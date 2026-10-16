@@ -1,0 +1,195 @@
+[
+ {
+  "fn": "peakTruth",
+  "args": [
+   300
+  ],
+  "out": "A 300-watt peak on the box is 30.0 watts RMS honestly."
+ },
+ {
+  "fn": "peakTruth",
+  "args": [
+   1000
+  ],
+  "out": "A 1000-watt peak on the box is 100.0 watts RMS honestly."
+ },
+ {
+  "fn": "peakTruth",
+  "args": [
+   50
+  ],
+  "out": "A 50-watt peak on the box is 5.0 watts RMS honestly."
+ },
+ {
+  "fn": "peakTruth",
+  "args": [
+   1
+  ],
+  "out": "A 1-watt peak on the box is 0.1 watts RMS honestly."
+ },
+ {
+  "fn": "peakTruth",
+  "args": [
+   800
+  ],
+  "out": "An 800-watt peak on the box is 80.0 watts RMS honestly."
+ },
+ {
+  "fn": "peakTruth",
+  "args": [
+   0
+  ],
+  "err": "the peak watts must be above zero"
+ },
+ {
+  "fn": "peakTruth",
+  "args": [
+   -5
+  ],
+  "err": "the peak watts must be above zero"
+ },
+ {
+  "fn": "doubleTruth",
+  "args": [
+   300,
+   600
+  ],
+  "out": "600 watts against 300 buys 3.0 dB honestly - barely audible."
+ },
+ {
+  "fn": "doubleTruth",
+  "args": [
+   300,
+   3000
+  ],
+  "out": "3000 watts against 300 buys 10.0 dB honestly - about twice as loud."
+ },
+ {
+  "fn": "doubleTruth",
+  "args": [
+   100,
+   400
+  ],
+  "out": "400 watts against 100 buys 6.0 dB honestly - a clear step."
+ },
+ {
+  "fn": "doubleTruth",
+  "args": [
+   300,
+   150
+  ],
+  "out": "150 watts against 300 loses 3.0 dB honestly - barely audible."
+ },
+ {
+  "fn": "doubleTruth",
+  "args": [
+   200,
+   200
+  ],
+  "out": "200 watts against 200 is the same loudness honestly."
+ },
+ {
+  "fn": "doubleTruth",
+  "args": [
+   50,
+   500
+  ],
+  "out": "500 watts against 50 buys 10.0 dB honestly - about twice as loud."
+ },
+ {
+  "fn": "doubleTruth",
+  "args": [
+   30,
+   240
+  ],
+  "out": "240 watts against 30 buys 9.0 dB honestly - a clear step."
+ },
+ {
+  "fn": "doubleTruth",
+  "args": [
+   0,
+   600
+  ],
+  "err": "the first watts must be above zero"
+ },
+ {
+  "fn": "doubleTruth",
+  "args": [
+   300,
+   0
+  ],
+  "err": "the second watts must be above zero"
+ },
+ {
+  "fn": "roomTruth",
+  "args": [
+   250,
+   50
+  ],
+  "out": "A 250-square-foot room asks the medium 50-watt class; 50.0 honest watts meets the class exactly honestly."
+ },
+ {
+  "fn": "roomTruth",
+  "args": [
+   120,
+   30
+  ],
+  "out": "A 120-square-foot room asks the small 20-watt class; 30.0 honest watts has 10.0 watts to spare honestly."
+ },
+ {
+  "fn": "roomTruth",
+  "args": [
+   400,
+   30
+  ],
+  "out": "A 400-square-foot room asks the large 100-watt class; 30.0 honest watts runs 70.0 watts short honestly."
+ },
+ {
+  "fn": "roomTruth",
+  "args": [
+   200,
+   60
+  ],
+  "out": "A 200-square-foot room asks the medium 50-watt class; 60.0 honest watts has 10.0 watts to spare honestly."
+ },
+ {
+  "fn": "roomTruth",
+  "args": [
+   150,
+   20
+  ],
+  "out": "A 150-square-foot room asks the medium 50-watt class; 20.0 honest watts runs 30.0 watts short honestly."
+ },
+ {
+  "fn": "roomTruth",
+  "args": [
+   80,
+   20
+  ],
+  "out": "An 80-square-foot room asks the small 20-watt class; 20.0 honest watts meets the class exactly honestly."
+ },
+ {
+  "fn": "roomTruth",
+  "args": [
+   600,
+   150
+  ],
+  "out": "A 600-square-foot room asks the large 100-watt class; 150.0 honest watts has 50.0 watts to spare honestly."
+ },
+ {
+  "fn": "roomTruth",
+  "args": [
+   0,
+   50
+  ],
+  "err": "the room size must be above zero"
+ },
+ {
+  "fn": "roomTruth",
+  "args": [
+   250,
+   0
+  ],
+  "err": "the RMS watts must be above zero"
+ }
+]
