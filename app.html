@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soundbar Math - app</title>
+<style>
+  :root { --accent:#5b3a7a; --ink:#241c30; --paper:#f8f5fb; --soft:#efe8f5; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, 'Times New Roman', serif; background:var(--paper); color:var(--ink); line-height:1.55; padding:2rem 1.2rem; }
+  main { max-width:660px; margin:0 auto; }
+  h1 { font-size:1.8rem; color:var(--accent); }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; margin:1rem 0 1.4rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  .panel { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+  h2 { font-size:1.1rem; margin-bottom:.6rem; }
+  label { display:block; font-size:.9rem; margin:.45rem 0 .1rem; }
+  input { width:100%; padding:.45rem .55rem; font-size:1rem; border:1px solid #c2b3d4; border-radius:6px; background:#fff; color:var(--ink); }
+  .out { margin-top:.7rem; font-size:.98rem; background:#fff; border:1px dashed #c2b3d4; border-radius:6px; padding:.6rem .7rem; min-height:2.4rem; }
+  .out.err { border-color:#b03030; color:#8a1f1f; font-style:normal; }
+  footer { margin-top:1.8rem; font-size:.85rem; color:#665d75; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Soundbar Math</h1>
+  <div class="boundary">
+    <strong>Boundary: illustrative arithmetic only</strong>
+    The peak-to-RMS ratio, room classes and decibel steps here are labeled norms, not measurements of your soundbar, your room or your ears. Trust your own listening, follow the maker's RMS figure over anything this page says, and protect your hearing at high volume.
+  </div>
+
+  <div class="panel">
+    <h2>The peak truth</h2>
+    <label for="p-peak">Peak watts on the box</label>
+    <input id="p-peak" type="number" min="0" step="10" value="300">
+    <div class="out" id="p-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The doubling truth</h2>
+    <label for="d-a">Watts, model A</label>
+    <input id="d-a" type="number" min="0" step="10" value="300">
+    <label for="d-b">Watts, model B</label>
+    <input id="d-b" type="number" min="0" step="10" value="600">
+    <div class="out" id="d-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The room truth</h2>
+    <label for="r-sqft">Room size (square feet)</label>
+    <input id="r-sqft" type="number" min="0" step="10" value="400">
+    <label for="r-rms">Honest RMS watts on offer</label>
+    <input id="r-rms" type="number" min="0" step="5" value="30">
+    <div class="out" id="r-out"></div>
+  </div>
+
+  <footer>Soundbar Math keeps arithmetic on labeled norms only. <a href="index.html">Why it exists</a>.</footer>
+</main>
+<script src="engine.js"></script>
+<script>
+  const num = (id) => Number(document.getElementById(id).value);
+  function show(out, fn) {
+    try {
+      const text = fn();
+      out.textContent = text;
+      out.classList.remove("err");
+    } catch (e) {
+      out.textContent = e.message;
+      out.classList.add("err");
+    }
+  }
+  const pOut = document.getElementById("p-out");
+  const dOut = document.getElementById("d-out");
+  const rOut = document.getElementById("r-out");
+  function recalc() {
+    show(pOut, () => peakTruth(num("p-peak")));
+    show(dOut, () => doubleTruth(num("d-a"), num("d-b")));
+    show(rOut, () => roomTruth(num("r-sqft"), num("r-rms")));
+  }
+  document.querySelectorAll("input").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>
